@@ -19,7 +19,7 @@ setlocal suffixesadd=.pde
 let b:undo_ftplugin = "set cin< cink< fo< sua< et< sw< ts<"
 
 
-if has("python") && exists("processing_doc_path")
+if has("python") && exists("processing_doc_style")
 
 function! ProcessingDoc()
 python << ENDPY
@@ -28,21 +28,33 @@ import re
 import webbrowser
 from os import path
 
-basepath = path.abspath(vim.eval("g:processing_doc_path"))
+def launchDocFile(filename):
+    docfile = path.join(basepath, filename)
+    if path.exists(docfile) and path.isfile(docfile):
+        webbrowser.open(docfile)
+        return True
+    return False
+
+def launchDocWeb(filename):
+	docfile = "http://processing.org/reference/"
+	webbrowser.open(docfile+filename)
+	return True
+
+if vim.eval("g:processing_doc_style") == "local":
+	basepath = path.abspath(vim.eval("g:processing_doc_path"))
+	launchDoc = launchDocFile
+else:
+	launchDoc = launchDocWeb
+
 (row, col) = vim.current.window.cursor
 line = vim.current.line
+
 if re.match(r"\w+\s*\(", line[col:]):
     fun = True
 else:
     fun = False
 word = vim.eval('expand("<cword>")')
 
-def launchDoc(filename):
-    docfile = path.join(basepath, filename)
-    if path.exists(docfile) and path.isfile(docfile):
-        webbrowser.open(docfile)
-        return True
-    return False
 
 if word:
     if fun:
