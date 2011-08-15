@@ -1,0 +1,14 @@
+
+Installation:
+
+1. Extract the archive into your Vim runtime directory (~/.vim on UNIX)
+2. Set the path to the Processing documentation in your vimrc, e.g.
+
+  let processing_doc_path="c:\\Programs\\Processing\\reference"
+
+3. Enjoy!
+
+If you have a Vim built with Python, the K key can be used to look up
+functions and variables in the documentation.  Note that words followed
+by an opening paren "(" are treated as functions, thus K pressed on
+frameRate() and frameRate goes to different documentation pages.
