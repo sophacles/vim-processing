@@ -69,4 +69,30 @@ endfunction
 
 nnoremap <silent> <buffer> K :call ProcessingDoc()<CR>
 
+if has("macunix")
+function! RunProcessing()
+	let sketch = expand("%:h:t")
+	"shell osascript -e 'set sname to "sketch_aug15a"' -e 'tell application "Processing" to activate' -e 'tell application "System Events" to tell process "Processing"' -e 'repeat' -e 'set t to title of every window' -e 'set ta to item 1 of t' -e 'if ta contains sname then' -e 'keystroke "r" using command down' -e 'exit repeat' -e 'else' -e 'keystroke "`" using command down' -e 'end if' -e 'end repeat' -e 'end tell'
+
+	let input =  ["set sname to \"" . expand("%:p:h:t") . "\""]
+	let input += ["tell application \"Processing\" to activate" ]
+	let input += ["tell application \"System Events\" to tell process \"Processing\""]
+	let input += ["repeat"]
+	let input += ["set t to title of every window"]
+	let input += ["set ta to item 1 of t"]
+	let input += ["if ta contains sname then"]
+	let input += ["keystroke \"r\" using {command down}"]
+	let input += ["exit repeat"]
+	let input += ["else"]
+	let input += ["keystroke \"`\" using command down"]
+	let input += ["end if"]
+	let input += ["end repeat"]
+	let input += ["end tell"]
+	let myargs = join(input, "\n") . "\n"
+    call system("osascript", myargs)
+endfunction "RunProcessing
+map <F5> :call RunProcessing()<CR>
+endif "has("macunix")
+
 endif
+
