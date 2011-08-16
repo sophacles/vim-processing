@@ -1,0 +1,23 @@
+Vim processing.
+
+This is an extension of vim script #2115. It started simply as an easy git repo
+to bundle and use with pathogen, but has grown as I use processing more.
+
+I have made two sets of modifications so far:
+
+1) Documentiation is now browsable locally or on the web. If you set the
+variable processing_doc_style to "local" it will use a local copy of the
+processing docs (and requires you to set the variable processing_doc_path to
+point to the root of the documents). If you set processing_doc_style to "web"
+it will point your browser at the processing site when you use attempt to use
+the documentation hookup.  (normal mode K)
+
+2) For OSX users, I have created a applescript to tell processing to run the
+script in question. For this to properly work, Processing must already be
+running, and it works best if the "use external editor" preference is selected.
+Simply pressing F5 will cause this applescript to select the processing window
+corresponding to the pde we are editing, and presss the 'run' button. This
+is still pretty fragile, but works well enough to significantly increase the
+effectiveness of my workflow. If you know of better ways, please share!
+
+
