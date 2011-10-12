@@ -6,11 +6,14 @@
 
 " This is for Processing 0135 BETA, based on keywords.txt
 
-if exists("b:current_syntax")
-  finish
-endif
+:runtime! syntax/java.vim
 
-syntax case match
+"syn region processingFold start="{" end="}" transparent fold
+"if exists("b:current_syntax")
+"  finish
+"endif
+
+"syntax case match
 
 " LITERAL2
 
@@ -87,7 +90,7 @@ syn keyword processingFunction	contained year keyPressed mousePressed
 syn keyword processingFunction	contained frameRate
 
 " highlight funtcion names only when they are followed by "("
-" need to terminate match using \ze before ( to allow for 
+" need to terminate match using \ze before ( to allow for
 " unmatched bracket higlighting
 syn match   processingFunRegion	"\K\k*\s*\ze(" contains=processingFunction
 
@@ -103,7 +106,7 @@ syn keyword processingType	int long short void
 syn keyword processingBoolean	false true
 syn keyword processingConstant	null
 
-syn keyword processingStorageClass	final static synchronized transient volatile 
+syn keyword processingStorageClass	final static synchronized transient volatile
 syn keyword processingConditional	if else switch
 syn keyword processingControlFlow	break continue return
 syn keyword processingRepeat		while for do
@@ -153,51 +156,51 @@ syn keyword processingConstant	MOTION_JPEG_A MOTION_JPEG_B SORENSON VIDEO
 syn keyword processingConstant	WORST LOW MEDIUM HIGH BEST LOSSLESS
 syn keyword processingConstant	HALF_PI PI TWO_PI
 
-syn match   processingSpecError	display contained "\\."
-syn match   processingSpecial	display contained "\\[ntbrf'\"\\]"
-syn match   processingSpecial	display contained "\\u\x\{4}"
-syn match   processingSpecial	display contained "\\\o\{1,2}"
-syn match   processingSpecial	display contained "\\[0-3]\o\o"
+"syn match   processingSpecError	display contained "\\."
+"syn match   processingSpecial	display contained "\\[ntbrf'\"\\]"
+"syn match   processingSpecial	display contained "\\u\x\{4}"
+"syn match   processingSpecial	display contained "\\\o\{1,2}"
+"syn match   processingSpecial	display contained "\\[0-3]\o\o"
+"
+"syn region  processingString	start=+"+ end=+"+ end='$' contains=processingSpecial,processingSpecError,@Spell
+"
+"syn region  processingCharacter	start="'" end="'" end="$" contains=processingSpecial,processingSpecError
+"
+"syn keyword processingTodo	TODO FIXME XXX NOTE contained
+"
+"syn region  processingComment	start="/\*" end="\*/" contains=processingTodo,@Spell
+"syn region  processingCommentL	start="//" end="$" contains=processingTodo,@Spell
+"
+"if !exists("processing_minlines")
+"  let processing_minlines = 20
+"endif
+"exec "syn sync ccomment processingComment minlines=" . processing_minlines
 
-syn region  processingString	start=+"+ end=+"+ end='$' contains=processingSpecial,processingSpecError,@Spell
-
-syn region  processingCharacter	start="'" end="'" end="$" contains=processingSpecial,processingSpecError
-
-syn keyword processingTodo	TODO FIXME XXX NOTE contained
-
-syn region  processingComment	start="/\*" end="\*/" contains=processingTodo,@Spell
-syn region  processingCommentL	start="//" end="$" contains=processingTodo,@Spell
-
-if !exists("processing_minlines")
-  let processing_minlines = 20
-endif
-exec "syn sync ccomment processingComment minlines=" . processing_minlines
-
-syn match   processingNumber	display "\<\d\+[lL]\=\>"
-syn match   processingNumber	display "\<0x\x\+[lL]\=\>"
-syn match   processingOctal	display "\<0\o\+[lL]\=\>" contains=processingOctalZero
-syn match   processingOctalZero	display contained "\<0"
+"syn match   processingNumber	display "\<\d\+[lL]\=\>"
+"syn match   processingNumber	display "\<0x\x\+[lL]\=\>"
+"syn match   processingOctal	display "\<0\o\+[lL]\=\>" contains=processingOctalZero
+"syn match   processingOctalZero	display contained "\<0"
 " The trailing L doesn't make much sense for colors but the PDE accepts it ...
 syn match   processingColor	display "#\x\{6}[lL]\=\>"
 " float without . or exponent
-syn match   processingFloat	display "\<\d\+[fF]\>"
+"syn match   processingFloat	display "\<\d\+[fF]\>"
 " no \> because it might end in a .
-syn match   processingFloat	display "\<\d\+\.\d*\%([eE][-+]\=\d\+\)\=[fF]\="
+"syn match   processingFloat	display "\<\d\+\.\d*\%([eE][-+]\=\d\+\)\=[fF]\="
 " float starting with .
-syn match   processingFloat	display "\.\d\+\%([eE][-+]\=\d\+\)\=[fF]\=\>"
+"syn match   processingFloat	display "\.\d\+\%([eE][-+]\=\d\+\)\=[fF]\=\>"
 " float with explonent
-syn match   processingFloat	display "\<\d\+[eE][-+]\=\d\+"
+"syn match   processingFloat	display "\<\d\+[eE][-+]\=\d\+"
 
 " prevent highlighting of predefined function names after a dot
 syn region  processingEmpty	start="\.\ze\K" end="\>"
 
 " Highlight unmatched brackets
-syn match   processingParErr	display ")"
-syn match   processingBraErr	display "\]"
-syn match   processingCBraErr	display "}"
-syn region  processingPar	transparent start="(" end=")" contains=TOP,processingParErr
-syn region  processingBra	transparent start="\[" end="\]" contains=TOP,processingBraErr
-syn region  processingCBra	transparent start="{" end="}" contains=TOP,processingCBraErr
+"syn match   processingParErr	display ")"
+"syn match   processingBraErr	display "\]"
+"syn match   processingCBraErr	display "}"
+"syn region  processingPar	transparent start="(" end=")" contains=TOP,processingParErr
+"syn region  processingBra	transparent start="\[" end="\]" contains=TOP,processingBraErr
+"syn region  processingCBra	transparent start="{" end="}" contains=TOP,processingCBraErr
 
 
 hi def link processingParErr		Error
