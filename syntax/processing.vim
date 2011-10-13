@@ -87,7 +87,7 @@ syn keyword processingFunction	contained textureMode textWidth tint
 syn keyword processingFunction	contained translate triangle trim unbinary
 syn keyword processingFunction	contained unhex unhint updatePixels vertex
 syn keyword processingFunction	contained year keyPressed mousePressed
-syn keyword processingFunction	contained frameRate
+syn keyword processingFunction	contained frameRate pushStyle popStyle
 
 " highlight funtcion names only when they are followed by "("
 " need to terminate match using \ze before ( to allow for
@@ -180,16 +180,19 @@ syn keyword processingConstant	HALF_PI PI TWO_PI
 "syn match   processingNumber	display "\<0x\x\+[lL]\=\>"
 "syn match   processingOctal	display "\<0\o\+[lL]\=\>" contains=processingOctalZero
 "syn match   processingOctalZero	display contained "\<0"
+
+" NOTE: Java highlight doesn't do different colors for int and float, which is
+" dumb: keep it here :)
 " The trailing L doesn't make much sense for colors but the PDE accepts it ...
 syn match   processingColor	display "#\x\{6}[lL]\=\>"
 " float without . or exponent
-"syn match   processingFloat	display "\<\d\+[fF]\>"
+syn match   processingFloat	display "\<\d\+[fF]\>"
 " no \> because it might end in a .
-"syn match   processingFloat	display "\<\d\+\.\d*\%([eE][-+]\=\d\+\)\=[fF]\="
+syn match   processingFloat	display "\<\d\+\.\d*\%([eE][-+]\=\d\+\)\=[fF]\="
 " float starting with .
-"syn match   processingFloat	display "\.\d\+\%([eE][-+]\=\d\+\)\=[fF]\=\>"
+syn match   processingFloat	display "\.\d\+\%([eE][-+]\=\d\+\)\=[fF]\=\>"
 " float with explonent
-"syn match   processingFloat	display "\<\d\+[eE][-+]\=\d\+"
+syn match   processingFloat	display "\<\d\+[eE][-+]\=\d\+"
 
 " prevent highlighting of predefined function names after a dot
 syn region  processingEmpty	start="\.\ze\K" end="\>"
@@ -203,9 +206,9 @@ syn region  processingEmpty	start="\.\ze\K" end="\>"
 "syn region  processingCBra	transparent start="{" end="}" contains=TOP,processingCBraErr
 
 
-hi def link processingParErr		Error
-hi def link processingBraErr		Error
-hi def link processingCBraErr		Error
+"hi def link processingParErr		Error
+"hi def link processingBraErr		Error
+"hi def link processingCBraErr		Error
 
 hi def link processingKeyword		Keyword
 hi def link processingRepeat		Repeat
