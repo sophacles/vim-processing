@@ -19,7 +19,15 @@ setlocal suffixesadd=.pde
 let b:undo_ftplugin = "set cin< cink< fo< sua< et< sw< ts<"
 
 
-if has("python") && exists("processing_doc_style")
+if has("python")
+
+    if !exists("g:processing_doc_style")
+        let g:processing_doc_style = "web"
+    endif
+
+    if !exists("g:processing_doc_path")
+        let g:processing_doc_style = "web"
+    endif
 
 function! ProcessingDoc()
 python << ENDPY
@@ -69,7 +77,7 @@ endfunction
 
 nnoremap <silent> <buffer> K :call ProcessingDoc()<CR>
 
-endif "has("python") && exists("processing_doc_style")
+endif "has("python")
 
 
 if has("macunix")
