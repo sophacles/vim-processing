@@ -48,6 +48,15 @@ def launchDocWeb(filename):
     webbrowser.open(docfile+filename)
     return True
 
+def wordStart(line, column):
+    start = column
+    for i in reversed(range(column)):
+        if line[i].isalnum():
+            start = i
+        else:
+            break
+    return start
+
 if vim.eval("g:processing_doc_style") == "local":
     basepath = path.abspath(vim.eval("g:processing_doc_path"))
     launchDoc = launchDocFile
@@ -57,10 +66,19 @@ else:
 (row, col) = vim.current.window.cursor
 line = vim.current.line
 
+col = wordStart(line, col)
 if re.match(r"\w+\s*\(", line[col:]):
-    fun = True
+    if col < 4:
+        fun = True
+    else:
+        col -= 4
+        if re.match(r"new\s*\w+\s*\(", line[col:]):
+            fun = False
+        else:
+            fun = True
 else:
     fun = False
+
 word = vim.eval('expand("<cword>")')
 
 
