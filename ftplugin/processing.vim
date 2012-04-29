@@ -82,15 +82,15 @@ endif "has("python")
 
 if has("macunix")
 
-let s:runner = expand('<sfile>:p:h').'/../bin/runPSketch.scpt'
+    let s:runner = expand('<sfile>:p:h').'/../bin/runPSketch.scpt'
 
-function! RunProcessing()
-    let sketch = expand("%:h:t")
-    silent execute "!osascript ".s:runner." ".sketch
-endfunction "RunProcessing
+    function! RunProcessing()
+        let sketch = expand("%:h:t")
+        silent execute "!osascript ".s:runner." ".sketch
+    endfunction "RunProcessing
 
-map <F5> :call RunProcessing()<CR>
-command! RunProcessing call RunProcessing()
+    map <F5> :call RunProcessing()<CR>
+    command! RunProcessing call RunProcessing()
 
 endif "has("macunix")
 
