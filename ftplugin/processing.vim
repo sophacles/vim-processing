@@ -69,6 +69,9 @@ endfunction
 
 nnoremap <silent> <buffer> K :call ProcessingDoc()<CR>
 
+endif "has("python") && exists("processing_doc_style")
+
+
 if has("macunix")
 function! RunProcessing()
 	let sketch = expand("%:h:t")
@@ -101,8 +104,9 @@ function! RunProcessing()
 	let myargs = join(input, "\n") . "\n"
     call system("osascript", myargs)
 endfunction "RunProcessing
+
 map <F5> :call RunProcessing()<CR>
+command! RunProcessing call RunProcessing()
 endif "has("macunix")
 
-endif
 
