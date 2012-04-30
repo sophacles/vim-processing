@@ -104,7 +104,7 @@ if has("macunix")
     let s:runner = expand('<sfile>:p:h').'/../bin/runPSketch.scpt'
 
     function! RunProcessing()
-        let sketch = expand("%:h:t")
+        let sketch = expand("%:p:h:t")
         silent execute "!osascript ".s:runner." ".sketch
     endfunction "RunProcessing
 
