@@ -9,6 +9,7 @@ let b:did_ftplugin = 1
 setlocal expandtab
 setlocal shiftwidth=2
 setlocal tabstop=2
+setlocal fdm=syntax
 
 
 setlocal cindent

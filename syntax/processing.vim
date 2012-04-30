@@ -7,6 +7,9 @@
 " This is for Processing 0135 BETA, based on keywords.txt
 
 :runtime! syntax/java.vim
+syn clear javaError2
+"syn match   javaError2 "\|=<"
+"hi def link javaError2 Error
 
 "syn region processingFold start="{" end="}" transparent fold
 "if exists("b:current_syntax")
@@ -202,7 +205,8 @@ syn keyword processingTodo	TODO FIXME XXX NOTE contained
 "syn match   processingOctalZero	display contained "\<0"
 
 " NOTE: Java highlight doesn't do different colors for int and float, which is
-" dumb: keep it here :)
+" dumb: so keep this code here :)
+
 " The trailing L doesn't make much sense for colors but the PDE accepts it ...
 syn match   processingColor	display "#\x\{6}[lL]\=\>"
 " float without . or exponent
@@ -213,6 +217,10 @@ syn match   processingFloat	display "\<\d\+\.\d*\%([eE][-+]\=\d\+\)\=[fF]\="
 syn match   processingFloat	display "\.\d\+\%([eE][-+]\=\d\+\)\=[fF]\=\>"
 " float with explonent
 syn match   processingFloat	display "\<\d\+[eE][-+]\=\d\+"
+
+" this leverages some features from the java syntax file... keeps the
+" hightlighting working properly in () and other regions
+syn cluster javaTop add=processingColor,processingFloat
 
 " prevent highlighting of predefined function names after a dot
 syn region  processingEmpty	start="\.\ze\K" end="\>"
