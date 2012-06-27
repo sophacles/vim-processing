@@ -5,7 +5,7 @@ to bundle and use with pathogen, but has grown as I use processing more.
 
 I have made two sets of modifications so far:
 
-1) Documentiation is now browsable locally or on the web. If you set the
+1) Documentation is now browsable locally or on the web. If you set the
 variable processing_doc_style to "local" it will use a local copy of the
 processing docs (and requires you to set the variable processing_doc_path to
 point to the root of the documents). If you set processing_doc_style to "web"
