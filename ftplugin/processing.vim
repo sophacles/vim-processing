@@ -100,17 +100,15 @@ endif "has("python")
 
 
 if has("macunix")
-
-    let s:runner = expand('<sfile>:p:h').'/../bin/runPSketch.scpt'
-
     function! RunProcessing()
-        let sketch = expand("%:p:h:t")
-        silent execute "!osascript ".s:runner." ".sketch
-    endfunction "RunProcessing
+        let sketch_name =  expand("%:p:h:t")
+        let sketch_path =  expand("%:p:h")
+        silent execute "!processing-java --sketch=" . sketch_path
+                    \ . " --output=/tmp/processing/" . sketch_name
+                    \ . " --run --force"
+    endfunction
 
     map <F5> :call RunProcessing()<CR>
     command! RunProcessing call RunProcessing()
-
 endif "has("macunix")
-
 

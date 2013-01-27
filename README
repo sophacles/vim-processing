@@ -12,12 +12,10 @@ point to the root of the documents). If you set processing_doc_style to "web"
 it will point your browser at the processing site when you use attempt to use
 the documentation hookup.  (normal mode K)
 
-2) For OSX users, I have created a applescript to tell processing to run the
-script in question. For this to properly work, Processing must already be
-running, and it works best if the "use external editor" preference is selected.
-Simply pressing F5 will cause this applescript to select the processing window
-corresponding to the pde we are editing, and presss the 'run' button. This
-is still pretty fragile, but works well enough to significantly increase the
-effectiveness of my workflow. If you know of better ways, please share!
+2) For OSX users, processing-java is used to used to run the script in question.
+For this to work, you need to install processing-java by opening Processing then
+selecting 'Install "processing-java"' from the Tools menu. Having done this,
+press F5 in Vim to run the current sketch. Alternately, you can call the command
+:RunProcessing, or bind that command to a key of your choosing.
 
 
