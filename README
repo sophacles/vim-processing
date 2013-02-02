@@ -18,7 +18,8 @@ which is bound to the F5 key by default.
 Sketches are run using one of two methods. On Windows and Linux, and on OS
 X with the g:use_processing_java variable set, the processing-java command is
 used. This tool is used to run sketches outside of the Processing editor, and is
-supplied with Processing itself.
+supplied with Processing itself. Make sure processing-java is in your PATH
+before trying to run it from vim-processing.
 
 On OS X without g:use_processing_java set, an AppleScript script is used to tell
 Processing to run the sketch in question. For this to properly work, the
