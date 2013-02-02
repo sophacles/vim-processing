@@ -99,18 +99,34 @@ nnoremap <silent> <buffer> K :call ProcessingDoc()<CR>
 endif "has("python")
 
 
-if has("macunix")
+" AppleScript for running sketches on OS X pre Processing 2.0b5
+let s:runner = expand('<sfile>:p:h').'/../bin/runPSketch.scpt'
 
-    let s:runner = expand('<sfile>:p:h').'/../bin/runPSketch.scpt'
+" RunProcessing - Run the current sketch in Processing
+function! RunProcessing()
 
-    function! RunProcessing()
-        let sketch = expand("%:p:h:t")
-        silent execute "!osascript ".s:runner." ".sketch
-    endfunction "RunProcessing
+    let sketch_name =  expand("%:p:h:t")
+    let sketch_path =  "\"" . expand("%:p:h") . "\""
 
-    map <F5> :call RunProcessing()<CR>
-    command! RunProcessing call RunProcessing()
+    if has("win32") || has("win64")
+        let output_dir = "\"" . expand("$TEMP") . "\\vim-processing\\" . sketch_name . "\""
+    else
+        let output_dir = "/tmp/vim-processing/" . sketch_name
+    endif " has("win32") ...
 
-endif "has("macunix")
 
+    if has("macunix") && ! exists("g:use_processing_java")
+        let command =  "!osascript ".s:runner." ".sketch_name
+        silent execute command
+    else
+        let command = "!processing-java --sketch=" . sketch_path
+                    \ . " --output=" . output_dir . " --run --force"
+        execute command
+    endif " has("macunix")...
+
+
+endfunction "RunProcessing
+
+map <F5> :call RunProcessing()<CR>
+command! RunProcessing call RunProcessing()
 
