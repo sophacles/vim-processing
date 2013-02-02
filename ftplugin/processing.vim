@@ -115,7 +115,7 @@ function! RunProcessing()
     endif " has("win32") ...
 
 
-    if has("macunix") && ! exists("g:use_java_processing")
+    if has("macunix") && ! exists("g:use_processing_java")
         let command =  "!osascript ".s:runner." ".sketch_name
         silent execute command
     else
