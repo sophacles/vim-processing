@@ -2,7 +2,7 @@
 " Language:	Processing
 " Maintainer:	Szabolcs Horvát <szhorvat at gmail dot com>
 " Version:	3
-" Last Change:	2008-02-02
+" Last Change:	2013-05-08
 
 " This is for Processing 0135 BETA, based on keywords.txt
 
@@ -220,7 +220,7 @@ syn match   processingFloat	display "\<\d\+[eE][-+]\=\d\+"
 
 " this leverages some features from the java syntax file... keeps the
 " hightlighting working properly in () and other regions
-syn cluster javaTop add=processingColor,processingFloat
+syn cluster javaTop add=processingColor,processingFloat,processingConstant,processingFunction,processingVariable
 
 " prevent highlighting of predefined function names after a dot
 syn region  processingEmpty	start="\.\ze\K" end="\>"
