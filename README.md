@@ -18,3 +18,8 @@ If you want to allways use this option on OSX, add this to your .vimrc
 
 
 On OS X without *g:use_processing_java* set, an AppleScript script is used to tell Processing to run the sketch in question. For this to properly work, the Processing editor must already be running with the pde file open, and it works best if the “use external editor” preference is selected. That feature has been removed in recent versions of Processing, with the developers recommending the use of processing-java instead. The AppleScript is retained as the default on OS X so as not to break anything for existing users.
+
+
+Folding can be enabled by defining "processing_fold" 
+
+	let processing_fold = 1
