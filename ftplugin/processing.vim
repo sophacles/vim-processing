@@ -14,8 +14,10 @@ set cpo-=C
 setlocal expandtab
 setlocal shiftwidth=2
 setlocal tabstop=2
-"setlocal fdm=syntax
 
+if has("folding") && exists("processing_fold")
+  setlocal fdm=syntax
+endif
 
 setlocal cindent
 setlocal cinkeys-=0#
