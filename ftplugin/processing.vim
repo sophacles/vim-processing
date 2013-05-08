@@ -5,11 +5,16 @@ if (exists("b:did_ftplugin"))
 endif
 let b:did_ftplugin = 1
 
+" Make sure the continuation lines below do not cause problems in
+" compatibility mode.
+let s:save_cpo = &cpo
+set cpo-=C
+
 " You may want to comment these
 setlocal expandtab
 setlocal shiftwidth=2
 setlocal tabstop=2
-setlocal fdm=syntax
+"setlocal fdm=syntax
 
 
 setlocal cindent
@@ -130,3 +135,6 @@ endfunction "RunProcessing
 map <F5> :call RunProcessing()<CR>
 command! RunProcessing call RunProcessing()
 
+" Restore the saved compatibility options.
+let &cpo = s:save_cpo
+unlet s:save_cpo
