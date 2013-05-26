@@ -32,7 +32,7 @@ syn match   processingVariable	display "mousePressed"
 syn match   processingVariable	display "keyPressed"
 
 " NOTE: just to make sure that this stuff works right, make these into
-" a list, one word per line, then add the stuff from the keyfile, hightlight
+" a list, one word per line, then add the stuff from the keyfile, highlight
 " it all, and !sort it then !unique it, and anything that goes away, in
 " keywords.txt will still be captured here for happiness with older versions
 " of processing
@@ -102,9 +102,9 @@ syn keyword processingFunction	contained tint toLowerCase toUpperCase translate
 syn keyword processingFunction	contained triangle trim unbinary unhex unhint
 syn keyword processingFunction	contained updatePixels vertex year
 
-" highlight funtcion names only when they are followed by "("
+" highlight function names only when they are followed by "("
 " need to terminate match using \ze before ( to allow for
-" unmatched bracket higlighting
+" unmatched bracket highlighting
 syn match   processingFunRegion	"\K\k*\s*\ze(" contains=processingFunction
 
 " KEYWORD1
@@ -219,7 +219,7 @@ syn match   processingFloat	display "\.\d\+\%([eE][-+]\=\d\+\)\=[fF]\=\>"
 syn match   processingFloat	display "\<\d\+[eE][-+]\=\d\+"
 
 " this leverages some features from the java syntax file... keeps the
-" hightlighting working properly in () and other regions
+" highlighting working properly in () and other regions
 syn cluster javaTop add=processingColor,processingFloat,processingConstant,processingFunction,processingVariable
 
 " prevent highlighting of predefined function names after a dot

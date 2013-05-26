@@ -11,7 +11,7 @@ variable *processing_doc_style* to “local” it will use a local copy of the P
 
 Sketches are run using one of two methods. On Windows and Linux, and on OS X with the *g:use_processing_java* variable set, the processing-java command is used. This tool is used to run sketches outside of the Processing editor, and is supplied with Processing itself. Make sure processing-java is in your PATH before trying to run it from vim-processing.
 
-If you want to allways use this option on OSX, add this to your .vimrc
+If you want to always use this option on OSX, add this to your .vimrc
 
 	filetype plugin on
 	let g:use_processing_java=1
