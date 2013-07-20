@@ -1,0 +1,167 @@
+" Vim syntax file
+" Language:	Processing
+" Maintainer:	Szabolcs Horvát <szhorvat at gmail dot com>
+" Version:	3
+" Last Change:	2013-05-08
+
+" This is for Processing 0135 BETA, based on keywords.txt
+
+:runtime! syntax/java.vim
+syn clear javaError2
+"syn match   javaError2 "\|=<"
+"hi def link javaError2 Error
+
+"syn region processingFold start="{" end="}" transparent fold
+"if exists("b:current_syntax")
+"  finish
+"endif
+
+"syntax case match
+
+"
+%%kw_variables
+
+"syn keyword processingVariable focused frameCount height key keyCode
+"syn keyword processingVariable mouseButton mouseX mouseY online pixels
+"syn keyword processingVariable pmouseX pmouseY screen screenHeight
+"syn keyword processingVariable screenWidth width frameRate
+
+" at the moment these need to be "syn match"es so that they don't take
+" precedence over processingFunRegion's start pattern:
+" syn keyword processingVariable  frameRate mousePressed keyPressed
+syn match   processingVariable	display "frameRate"
+syn match   processingVariable	display "mousePressed"
+syn match   processingVariable	display "keyPressed"
+
+" NOTE: just to make sure that this stuff works right, make these into
+" a list, one word per line, then add the stuff from the keyfile, highlight
+" it all, and !sort it then !unique it, and anything that goes away, in
+" keywords.txt will still be captured here for happiness with older versions
+" of processing
+"
+" FUNCTION1 FUNCTION2 FUNCTION3 FUNCTION4
+%%kw_functions
+
+" highlight function names only when they are followed by "("
+" need to terminate match using \ze before ( to allow for
+" unmatched bracket highlighting
+syn match   processingFunRegion	"\K\k*\s*\ze(" contains=processingFunction
+
+" KEYWORD1
+
+" Some of this overlaps the Java, but some of it is unique here, so just
+" letting it all stay, it doesn't really hurt anything :)
+%%kw_types
+
+syn keyword processingBoolean	false true
+syn keyword processingConstant	null
+
+"XXX: All covered in Java, just keeping it here cuz it may be useful for
+"historic comparison for a while
+"syn keyword processingStorageClass	final static synchronized transient volatile
+"syn keyword processingConditional	if else switch
+"syn keyword processingControlFlow	break continue return
+"syn keyword processingRepeat		while for do
+"syn keyword processingLabel		case default
+"syn keyword processingException		try catch throw finally
+"syn keyword processingOperator		new instanceof
+
+"syn keyword processingKeyword	abstract class
+"syn keyword processingKeyword	interface native
+"syn keyword processingKeyword	package private protected public
+"syn keyword processingKeyword	extends implements import throws
+"syn keyword processingKeyword	super this
+
+
+" LITERAL2
+
+%%kw_constants
+
+"syn match   processingSpecError	display contained "\\."
+"syn match   processingSpecial	display contained "\\[ntbrf'\"\\]"
+"syn match   processingSpecial	display contained "\\u\x\{4}"
+"syn match   processingSpecial	display contained "\\\o\{1,2}"
+"syn match   processingSpecial	display contained "\\[0-3]\o\o"
+"
+"syn region  processingString	start=+"+ end=+"+ end='$' contains=processingSpecial,processingSpecError,@Spell
+"
+"syn region  processingCharacter	start="'" end="'" end="$" contains=processingSpecial,processingSpecError
+"
+syn keyword processingTodo	TODO FIXME XXX NOTE contained
+"
+"syn region  processingComment	start="/\*" end="\*/" contains=processingTodo,@Spell
+"syn region  processingCommentL	start="//" end="$" contains=processingTodo,@Spell
+"
+"if !exists("processing_minlines")
+"  let processing_minlines = 20
+"endif
+"exec "syn sync ccomment processingComment minlines=" . processing_minlines
+
+"syn match   processingNumber	display "\<\d\+[lL]\=\>"
+"syn match   processingNumber	display "\<0x\x\+[lL]\=\>"
+"syn match   processingOctal	display "\<0\o\+[lL]\=\>" contains=processingOctalZero
+"syn match   processingOctalZero	display contained "\<0"
+
+" NOTE: Java highlight doesn't do different colors for int and float, which is
+" dumb: so keep this code here :)
+
+" The trailing L doesn't make much sense for colors but the PDE accepts it ...
+syn match   processingColor	display "#\x\{6}[lL]\=\>"
+" float without . or exponent
+syn match   processingFloat	display "\<\d\+[fF]\>"
+" no \> because it might end in a .
+syn match   processingFloat	display "\<\d\+\.\d*\%([eE][-+]\=\d\+\)\=[fF]\="
+" float starting with .
+syn match   processingFloat	display "\.\d\+\%([eE][-+]\=\d\+\)\=[fF]\=\>"
+" float with explonent
+syn match   processingFloat	display "\<\d\+[eE][-+]\=\d\+"
+
+" this leverages some features from the java syntax file... keeps the
+" highlighting working properly in () and other regions
+syn cluster javaTop add=processingColor,processingFloat,processingConstant,processingFunction,processingVariable
+
+" prevent highlighting of predefined function names after a dot
+syn region  processingEmpty	start="\.\ze\K" end="\>"
+
+" Highlight unmatched brackets
+"syn match   processingParErr	display ")"
+"syn match   processingBraErr	display "\]"
+"syn match   processingCBraErr	display "}"
+"syn region  processingPar	transparent start="(" end=")" contains=TOP,processingParErr
+"syn region  processingBra	transparent start="\[" end="\]" contains=TOP,processingBraErr
+"syn region  processingCBra	transparent start="{" end="}" contains=TOP,processingCBraErr
+
+
+"hi def link processingParErr		Error
+"hi def link processingBraErr		Error
+"hi def link processingCBraErr		Error
+
+hi def link processingKeyword		Keyword
+hi def link processingRepeat		Repeat
+hi def link processingConditional	Conditional
+hi def link processingControlFlow	Keyword
+hi def link processingException		Exception
+hi def link processingLabel		Label
+hi def link processingFunction		Function
+hi def link processingOperator		Operator
+hi def link processingType		Type
+hi def link processingStorageClass	StorageClass
+hi def link processingConstant 		Constant
+hi def link processingVariable		Constant
+hi def link processingBoolean		Boolean
+hi def link processingNumber		Number
+hi def link processingOctal		Number
+hi def link processingOctalZero		PreProc
+hi def link processingColor		Number
+hi def link processingFloat		Float
+hi def link processingString		String
+hi def link processingCharacter		Character
+hi def link processingSpecial		SpecialChar
+hi def link processingSpecError		Error
+hi def link processingComment		Comment
+hi def link processingCommentL		Comment
+hi def link processingTodo		Todo
+
+let b:current_syntax = "processing"
+
+" vim: ts=8
