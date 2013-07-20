@@ -30,9 +30,9 @@ def read_keywords(keywords_file):
         if match:
             (kw_name, kw_type, kw_loc) = match.groups()
             if kw_type in keywords:
-                keywords[kw_type].append(kw_name)
+                keywords[kw_type].add(kw_name)
             else:
-                keywords[kw_type] = [kw_name]
+                keywords[kw_type] = set([kw_name])
 
     return keywords
 
