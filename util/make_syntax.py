@@ -59,6 +59,9 @@ def get_syntax_block(keywords, required_types, prefix, excludes=None):
     type_words = []
     for type in required_types:
         type_words += keywords[type]
+
+    # Remove non-unique keywords, then sort.
+    type_words = list(set(type_words))
     type_words.sort()
 
     if excludes:
