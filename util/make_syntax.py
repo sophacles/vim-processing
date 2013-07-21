@@ -72,6 +72,8 @@ def get_syntax_block(keywords, required_types, prefix, excludes=None):
             curr_line=prefix
         curr_line += " %s" % word
 
+    block += "%s\n" % curr_line 
+
     return block
 
 
