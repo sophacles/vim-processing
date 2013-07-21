@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 
+import argparse
+import os
 import re
 import string
+import sys
 
-max_width = 80
-keywords_file = '/Applications/Processing.app/Contents/Resources/Java/modes/java/keywords.txt'
-template_file = 'syntax.tmpl'
+MAX_WIDTH = 80
 
 def read_keywords(keywords_file):
     """
@@ -40,7 +41,7 @@ def read_keywords(keywords_file):
 def get_syntax_block(keywords, required_types, prefix, excludes=None):
     """
     Returns a string containing part of a vim syntax definition file 
-    for a given set of keywords. Each line will be wrapped at max_width
+    for a given set of keywords. Each line will be wrapped at MAX_WIDTH
     characters.
 
     Arguments:
@@ -66,7 +67,7 @@ def get_syntax_block(keywords, required_types, prefix, excludes=None):
     block = ''
     curr_line = prefix
     for word in type_words:
-        if len(curr_line + word) + 1 >= max_width:
+        if len(curr_line + word) + 1 >= MAX_WIDTH:
             block += "%s\n" % curr_line 
             curr_line=prefix
         curr_line += " %s" % word
@@ -82,8 +83,31 @@ class SyntaxTemplate(string.Template):
 
 if __name__ == "__main__":
 
+    # Parse arguments and options
+    parser = argparse.ArgumentParser(description='''
+            Generate Vim syntax file for Processing. This program takes the
+            keywords.txt file supplied with processing, and uses it to create a
+            Vim syntax file.
+        ''')
+
+    parser.add_argument('keywords_file', metavar='KEYWORDS_FILE', type=str,
+            help='path to Processing keywords.txt')
+    parser.add_argument('-t', '--template', dest='template_file',
+            default='syntax.tmpl',
+            help='path to syntax template file. (default: %(default)s)')
+
+    args = parser.parse_args()
+
+    if not os.path.isfile(args.keywords_file):
+        sys.exit("Could not open keywords file %s. Does the file exist?" 
+                % args.keywords_file)
+    
+    if not os.path.isfile(args.template_file):
+        sys.exit("Could not open syntax template file %s. Does the file exist?" 
+                % args.template_file)
+
     # Get keywords from file
-    words = read_keywords(keywords_file)
+    words = read_keywords(args.keywords_file)
     mapping = {}
 
     # Build syntax chunks for each type of syntax element, and store in a 
@@ -116,7 +140,7 @@ if __name__ == "__main__":
 
 
     # Populate syntax template with syntax chunks, and print.
-    with open(template_file) as f:
+    with open(args.template_file) as f:
         template = SyntaxTemplate(f.read())
 
     print template.substitute(mapping)
