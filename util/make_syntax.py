@@ -117,7 +117,7 @@ if __name__ == "__main__":
 
     # Build syntax chunks for each type of syntax element, and store in a 
     # dictionary for later insertion into the syntax template.
-    pfunction_types = ('FUNCTION1', 'FUNCTION2', 'FUNCTION3', 'FUNCTION4')
+    pfunction_types = ('FUNCTION1', 'FUNCTION2', 'FUNCTION4')
     pfunction_prefix = "syn keyword processingFunction\tcontained"
     mapping['kw_functions'] = get_syntax_block(words, 
                                                pfunction_types,
