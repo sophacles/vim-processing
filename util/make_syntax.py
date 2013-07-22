@@ -27,7 +27,7 @@ def read_keywords(keywords_file):
         if re.match('^\s*#', line):
             continue
         
-        match = re.match('(\w+)\t(\w+)\t(\w*)', line)
+        match = re.match('^(\w+)\t(\w+)\t?(\w*)', line)
         if match:
             (kw_name, kw_type, kw_loc) = match.groups()
             if kw_type in keywords:
