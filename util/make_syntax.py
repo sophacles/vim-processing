@@ -5,6 +5,7 @@ import os
 import re
 import string
 import sys
+import textwrap
 
 MAX_WIDTH = 80
 
@@ -67,15 +68,9 @@ def get_syntax_block(keywords, required_types, prefix, excludes=None):
     if excludes:
         type_words = [x for x in type_words if x not in excludes]
 
-    block = ''
-    curr_line = prefix
-    for word in type_words:
-        if len(curr_line + word) + 1 >= MAX_WIDTH:
-            block += "%s\n" % curr_line 
-            curr_line=prefix
-        curr_line += " %s" % word
-
-    block += "%s\n" % curr_line 
+    block = textwrap.fill(' '.join(type_words), MAX_WIDTH,
+                            initial_indent=prefix,
+                            subsequent_indent=prefix)
 
     return block
 
@@ -119,7 +114,7 @@ if __name__ == "__main__":
     # Build syntax chunks for each type of syntax element, and store in a 
     # dictionary for later insertion into the syntax template.
     pfunction_types = ('FUNCTION1', 'FUNCTION2', 'FUNCTION4')
-    pfunction_prefix = "syn keyword processingFunction\tcontained"
+    pfunction_prefix = "syn keyword processingFunction\tcontained "
     mapping['kw_functions'] = get_syntax_block(words, 
                                                pfunction_types,
                                                pfunction_prefix)
