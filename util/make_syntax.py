@@ -86,6 +86,7 @@ class SyntaxTemplate(string.Template):
     """
     delimiter = '%%'
 
+
 if __name__ == "__main__":
 
     # Parse arguments and options
