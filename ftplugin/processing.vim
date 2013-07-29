@@ -106,31 +106,25 @@ nnoremap <silent> <buffer> K :call ProcessingDoc()<CR>
 endif "has("python")
 
 
+
 " AppleScript for running sketches on OS X pre Processing 2.0b5
 let s:runner = expand('<sfile>:p:h').'/../bin/runPSketch.scpt'
+
+if ! exists("g:use_processing_applescript")
+	compiler processing
+endif
 
 " RunProcessing - Run the current sketch in Processing
 function! RunProcessing()
 
-    let sketch_name =  expand("%:p:h:t")
-    let sketch_path =  "\"" . expand("%:p:h") . "\""
+	let sketch_name =  expand("%:p:h:t")
 
-    if has("win32") || has("win64")
-        let output_dir = "\"" . expand("$TEMP") . "\\vim-processing\\" . sketch_name . "\""
-    else
-        let output_dir = "/tmp/vim-processing/" . sketch_name
-    endif " has("win32") ...
-
-
-    if has("macunix") && ! exists("g:use_processing_java")
+    if has("macunix") && exists("g:use_processing_applescript")
         let command =  "!osascript ".s:runner." ".sketch_name
         silent execute command
     else
-        let command = "!processing-java --sketch=" . sketch_path
-                    \ . " --output=" . output_dir . " --run --force"
-        execute command
+		make
     endif " has("macunix")...
-
 
 endfunction "RunProcessing
 
