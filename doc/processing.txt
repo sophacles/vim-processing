@@ -1,20 +1,28 @@
-*processing.txt*     Processing and Vim               Last Change: 2014 Sep 23
+*processing.txt*     Processing and Vim               Last Change: 2013 Sep 27
 
-==============================================================================
-Authors:  Szabolcs Horvát                               *processing-author*
+Authors:  Szabolcs Horvát
           Erich Heine
           Guy John
           Richard Gray
           Crazy Master
           Vítor Galvão
 
+CONTENTS                                                 *processing-contents*
+
+Introduction                |processing-introduction|
+Commands                    |processing-commands|
+Variables                   |processing-variables|
+Known Issues                |processing-issues|
+Backwards Compatibility     |processing-compatibility|
+Contribution                |processing-contribution|
+
 ==============================================================================
 INTRODUCTION                                         *processing-introduction*
 
 processing-vim is a plugin for integrating the Processing graphics programming
 language and environment with vim. Since Processing 2.0 this has become
-increasingly easy, and it is possible to use vim as a complete replacement
-to the IDE provided with processing.
+increasingly easy, and it is possible to use vim as a complete replacement to
+the IDE provided with processing.
 
 This plugin provides syntax highlighting, integration of the compiler and
 vim's |:make|, and easy access to the help documentation. Basic usage is
@@ -43,12 +51,12 @@ COMMANDS                                                      *processing-cmd*
 <F5>
         Runs the compiler for processing, taking into account the settings
         defined by the |processing-variables|, This works even with the
-        settings for backwards compatiblity using the applescript hack on OSX
-        in conjunciton with older processing versions ( < 2.0)
+        settings for backwards compatibility using the applescript hack on OSX
+        in conjunction with older processing versions ( < 2.0)
 
 K                                                             *processing-doc*
         Opens a browser to the processing documentation for the item under the
-        cursro. The location of the documentation can be local or the web
+        cursor. The location of the documentation can be local or the web
         version, depending on the value of |g:processing_doc_style|. If the
         openbrowser plugin is available, it will use that, otherwise
         processing-vim will attempt to open a browser on it's own.
@@ -59,30 +67,31 @@ VARIABLES                                               *processing-variables*
 g:processing_doc_style                                *g:processing_doc_style*
          Can be set to 'local' or 'web' . 'web' will point the browser at the
          online documentation for processing when the K command is used.
-         'local' will point the browser to the documenation directory in
+         'local' will point the browser to the documentation directory in
          |g:processing_doc_path|
 
-g:processing_doc_path                                   *g:processing_doc_path*
+g:processing_doc_path                                  *g:processing_doc_path*
          The base path for a local installation of the processing
          documentation.
 
-g:use_processing_applescript                     *g:use_processing_applescript*
-        If this is set to true, processing-vim will ue the older version of
+g:use_processing_applescript                    *g:use_processing_applescript*
+        If this is set to true, processing-vim will use the older version of
         compilation and script-running based on an apple script. This is
-        reccommended only for backwards compatibility, not for versions of
+        recommended only for backwards compatibility, not for versions of
         processing newer than 2.0.  For more info see |processing-applescript|
 
 ==============================================================================
-KNOWN ISSUES                                                 *processing-bugs*
+KNOWN ISSUES                                               *processing-issues*
 
 * Due to processing-java's output, the error reporting leaves something to be
-  desired this will improve as processing-java imporves
+  desired this will improve as processing-java improves
 
 * Right now :make compiles and launches the sketch. New variable and commands
   to control this behavior are in the works
 
 ==============================================================================
-BACKWARDS COMPATIBILITY                               *processing-applescript*
+BACKWARDS COMPATIBILITY                             *processing-compatibility*
+                                                      *processing-applescript*
 
 Older versions of this plugin were intended to be used with processing 1.X,
 which didn't export the processing-java command line tool. For Mac OSX users
@@ -94,22 +103,22 @@ Processing app, and set the "use external editor" setting. Once this is done,
 you can use the processing runtime to compile and launch sketches with the
 <F5> key.
 
-Note: this functionality is no longer supported and will be phased out in
+Note: This function is no longer supported and will be phased out in
 future versions.
 
 ==============================================================================
-CONTRIBUTING                                         *processing-contirubtion*
+CONTRIBUTION                                         *processing-contribution*
 
-The processing-vim plugin is currerntly being maintained on github. The
-project url is https://github.com/sophacles/vim-processing . All contibutions
-and bug reports should be done through this site.
+The processing-vim plugin is currently being maintained on github. The project
+url is https://github.com/sophacles/vim-processing . All contributions and bug
+reports should be done through this site.
 
-People who have contibuted to this plugin so far:
+People who have contributed to this plugin so far:
 *  Szabolcs Horvát
-*  Erich Heine
-*  Guy John
-*  Richard Gray
-*  Crazy Master
-*  Vítor Galvão
+*  Erich Heine (@sophacles)
+*  Guy John (@rumblesan)
+*  Richard Gray (@vortura)
+*  Crazy Master (@crazymaster)
+*  Vítor Galvão (@vitorgalvao)
 
  vim:tw=78:et:ft=help:norl:
