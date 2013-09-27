@@ -1,12 +1,20 @@
 *processing.txt*     Processing and Vim               Last Change: 2013 Sep 27
 
-==============================================================================
-Authors:  Szabolcs Horvát                               *processing-author*
+Authors:  Szabolcs Horvát
           Erich Heine
           Guy John
           Richard Gray
           Crazy Master
           Vítor Galvão
+
+CONTENTS                                                 *processing-contents*
+
+Introduction                |processing-introduction|
+Commands                    |processing-commands|
+Variables                   |processing-variables|
+Known Issues                |processing-issues|
+Backwards Compatibility     |processing-compatibility|
+Contribution                |processing-contribution|
 
 ==============================================================================
 INTRODUCTION                                         *processing-introduction*
@@ -62,18 +70,18 @@ g:processing_doc_style                                *g:processing_doc_style*
          'local' will point the browser to the documentation directory in
          |g:processing_doc_path|
 
-g:processing_doc_path                                   *g:processing_doc_path*
+g:processing_doc_path                                  *g:processing_doc_path*
          The base path for a local installation of the processing
          documentation.
 
-g:use_processing_applescript                     *g:use_processing_applescript*
+g:use_processing_applescript                    *g:use_processing_applescript*
         If this is set to true, processing-vim will use the older version of
         compilation and script-running based on an apple script. This is
         recommended only for backwards compatibility, not for versions of
         processing newer than 2.0.  For more info see |processing-applescript|
 
 ==============================================================================
-KNOWN ISSUES                                                 *processing-bugs*
+KNOWN ISSUES                                               *processing-issues*
 
 * Due to processing-java's output, the error reporting leaves something to be
   desired this will improve as processing-java improves
@@ -82,7 +90,8 @@ KNOWN ISSUES                                                 *processing-bugs*
   to control this behavior are in the works
 
 ==============================================================================
-BACKWARDS COMPATIBILITY                               *processing-applescript*
+BACKWARDS COMPATIBILITY                             *processing-compatibility*
+                                                      *processing-applescript*
 
 Older versions of this plugin were intended to be used with processing 1.X,
 which didn't export the processing-java command line tool. For Mac OSX users
@@ -94,22 +103,22 @@ Processing app, and set the "use external editor" setting. Once this is done,
 you can use the processing runtime to compile and launch sketches with the
 <F5> key.
 
-Note: this functionality is no longer supported and will be phased out in
+Note: This function is no longer supported and will be phased out in
 future versions.
 
 ==============================================================================
-CONTRIBUTING                                         *processing-contribution*
+CONTRIBUTION                                         *processing-contribution*
 
-The processing-vim plugin is currently being maintained on github. The
-project url is https://github.com/sophacles/vim-processing . All contributions
-and bug reports should be done through this site.
+The processing-vim plugin is currently being maintained on github. The project
+url is https://github.com/sophacles/vim-processing . All contributions and bug
+reports should be done through this site.
 
 People who have contributed to this plugin so far:
 *  Szabolcs Horvát
-*  Erich Heine
-*  Guy John
-*  Richard Gray
-*  Crazy Master
-*  Vítor Galvão
+*  Erich Heine (@sophacles)
+*  Guy John (@rumblesan)
+*  Richard Gray (@vortura)
+*  Crazy Master (@crazymaster)
+*  Vítor Galvão (@vitorgalvao)
 
  vim:tw=78:et:ft=help:norl:
