@@ -12,6 +12,7 @@ CONTENTS                                                 *processing-contents*
 Introduction                |processing-introduction|
 Commands                    |processing-commands|
 Variables                   |processing-variables|
+Syntax Update               |processing-syntax|
 Known Issues                |processing-issues|
 Backwards Compatibility     |processing-compatibility|
 Contribution                |processing-contribution|
@@ -83,8 +84,8 @@ g:use_processing_applescript                    *g:use_processing_applescript*
 ==============================================================================
 SYNTAX UPDATE                                              *processing-syntax*
 
-In the case the the syntax, keywords and/or functions of the processing
-language change before the script maintainers update it, or if you are using a
+In the case the syntax, keywords and/or functions of the processing language
+change before the script maintainers update it, or if you are using a
 development version of Processing with a newer keywords.txt file, the utils/
 directory has some tools to make this task simple.
 
@@ -97,7 +98,7 @@ processing installation dir, under Java/modes/keywords.txt
 
 2. cd to the utils/ directory and run the make_syntax script. It takes one
 argument, the path to the keywords.txt file, and prints the output to stdout.
-On unixy systems this can simply be redirected to a file. >
+On unix systems this can simply be redirected to a file. >
    $> python make_syntax.py /path/to/processing/keywords.txt > \
    ../syntax/processing.vim.new
 
