@@ -1,4 +1,4 @@
-*processing.txt*     Processing and Vim               Last Change: 2013 Sep 27
+*processing.txt*     Processing and Vim               Last Change: 2013 Sep 29
 
 Authors:  Szabolcs Horvát
           Erich Heine
@@ -9,8 +9,8 @@ Authors:  Szabolcs Horvát
 
 CONTENTS                                                 *processing-contents*
 
-Introduction                |processing-introduction|
-Commands                    |processing-commands|
+Introduction                |processing-intro|
+Commands                    |processing-cmd|
 Variables                   |processing-variables|
 Syntax Update               |processing-syntax|
 Known Issues                |processing-issues|
@@ -18,7 +18,7 @@ Backwards Compatibility     |processing-compatibility|
 Contribution                |processing-contribution|
 
 ==============================================================================
-INTRODUCTION                                         *processing-introduction*
+INTRODUCTION                                                *processing-intro*
 
 processing-vim is a plugin for integrating the Processing graphics programming
 language and environment with vim. Since Processing 2.0 this has become
