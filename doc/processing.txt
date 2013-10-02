@@ -7,6 +7,8 @@ Authors:  Szabolcs Horvát
           Crazy Master
           Vítor Galvão
 
+License: Distributed under the same terms as Vim itself. (see |license|)
+
 CONTENTS                                                 *processing-contents*
 
 Introduction                |processing-intro|

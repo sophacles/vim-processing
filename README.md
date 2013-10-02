@@ -26,3 +26,7 @@ The full list of contributors to this project:
 *  Richard Gray (@vortura)
 *  Crazy Master (@crazymaster)
 *  Vítor Galvão (@vitorgalvao)
+
+### License
+
+Copyright (c) the contributors to the project. Distributed under the same terms as Vim itself. See `:help license`.
