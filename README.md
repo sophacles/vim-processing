@@ -13,6 +13,8 @@ Development version of [vim script #2115](http://www.vim.org/scripts/script.php?
 4. Folding can be enabled by defining "processing_fold"
     let processing_fold = 1
 
+For more usage information See `:help processing-intro`.
+
 ### Installing
 
 Use your favorite plugin manager, or download processing.zip from vimscripts and unzip it in ~/.vim/
