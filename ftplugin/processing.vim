@@ -26,84 +26,65 @@ setlocal suffixesadd=.pde
 
 let b:undo_ftplugin = "set cin< cink< fo< sua< et< sw< ts<"
 
+if !exists("g:processing_doc_style")
+	let g:processing_doc_style = "web"
+endif
+" TODO: have a sane default doc path
+if !exists("g:processing_doc_path")
+	let g:processing_doc_style = "web"
+endif
 
+if g:processing_doc_style == 'web'
+	let g:processing_doc_path="http://processing.org/reference"
+endif
+
+" Note - other functions for processing#docopen can be put here
+" for example, we could put open-browser in here
 if has("python")
-
-    if !exists("g:processing_doc_style")
-        let g:processing_doc_style = "web"
-    endif
-
-    if !exists("g:processing_doc_path")
-        let g:processing_doc_style = "web"
-    endif
-
-function! ProcessingDoc()
-python << ENDPY
-import vim
-import re
+	function! processing#docopen(docuri)
+		python << ENDPY
 import webbrowser
-from os import path
-
-def launchDocFile(filename):
-    docfile = path.join(basepath, filename)
-    if path.exists(docfile) and path.isfile(docfile):
-        webbrowser.open(docfile)
-        return True
-    return False
-
-def launchDocWeb(filename):
-    docfile = "http://processing.org/reference/"
-    webbrowser.open(docfile+filename)
-    return True
-
-def wordStart(line, column):
-    start = column
-    for i in reversed(range(column)):
-        if line[i].isalnum():
-            start = i
-        else:
-            break
-    return start
-
-if vim.eval("g:processing_doc_style") == "local":
-    basepath = path.abspath(vim.eval("g:processing_doc_path"))
-    launchDoc = launchDocFile
-else:
-    launchDoc = launchDocWeb
-
-(row, col) = vim.current.window.cursor
-line = vim.current.line
-
-col = wordStart(line, col)
-if re.match(r"\w+\s*\(", line[col:]):
-    if col < 4:
-        fun = True
-    else:
-        col -= 4
-        if re.match(r"new\s*\w+\s*\(", line[col:]):
-            fun = False
-        else:
-            fun = True
-else:
-    fun = False
-
-word = vim.eval('expand("<cword>")')
-
-
-if word:
-    if fun:
-        success = launchDoc(word + "_.html") or launchDoc(word + ".html")
-    else:
-        success = launchDoc(word + ".html") or launchDoc(word + "_.html")
-    if not success:
-        print "Identifier", '"' + word + '"', "not found in the documentation."
-
+import vim
+webbrowser.open(vim.eval("a:docuri"))
 ENDPY
-endfunction
+	endfunction
+endif " deterime doc style
 
-nnoremap <silent> <buffer> K :call ProcessingDoc()<CR>
+if exists("*processing#docopen")
+	function! ProcessingDoc()
+		let list_of_no_suffix_syntypes = [
+			\ "processingType",
+			\ "processingVariable",
+			\ "processingConstant",
+			\ "javaConditional",
+			\ "javaRepeat",
+			\ "javaBoolean",
+			\ "javaConstant",
+			\ "javaTypedef",
+			\ "javaOperator",
+			\ "javaType",
+			\ "javaType",
+			\ "javaStatement"]
+		let word = expand("<cword>")
+		let syntype = synIDattr(synID(line('.'), col('.'), 1), "name")
+		if syntype == "processingFunction"
+			let ending = "_.html"
+		elseif index(list_of_no_suffix_syntypes,syntype) >= 0
+			if word == "color"
+				let ending = "_datatype.html"
+			else
+				let ending = ".html"
+			endif " word == color
+		endif
+		if exists("ending")
+			call processing#docopen(g:processing_doc_path ."/" . word . ending)
+		else
+			echo "No known documentation for " . word
+		endif
+	endfunction "ProcessingDoc
 
-endif "has("python")
+	nnoremap <silent> <buffer> K :call ProcessingDoc()<CR>
+endif "processing#docopen
 
 
 
