@@ -4,11 +4,13 @@ Development version of [vim script #2115](http://www.vim.org/scripts/script.php?
 
 ### Features
 
-1. Syntax Highlighting for Processing language: will properly highlight sketches, based on the processing keywords.txt file. This includes processing functions and Java types and keywords as well.
+1. Syntax Highlighting for the Processing language: processing.vim will properly highlight sketches, based on the processing keywords.txt file. This includes processing functions and Java types and keywords as well.
 
-2. Documentation lookup - pressing `K` in when over a keyword, type or funciton defined by processing will open a browser to the relevant documentation. (currently requires python)
+2. Documentation lookup - pressing `K` in when over a keyword, type or function defined by processing will open a browser to the relevant documentation. *(Currently this requires python support compiled into vim)*
 
-3. Integrates with Vim's `:make` command. Simply typeing make will compile and run a sketch, and open the quickfix window if there are errors detected.
+3. Integrates with Vim's compiler support. Sketches can be run directly from Vim using the `:make` command. They are run via the `processing-java` command. This tool is used to run sketches outside of the Processing editor, and is supplied with Processing itself. Make sure `processing-java` is in your `PATH` before trying to run it from vim-processing.
+
+*(MacOSX users will need to install the processing-java command from the Processing IDE before using this functionality)*
 
 4. Folding can be enabled by defining "processing_fold"
     let processing_fold = 1
