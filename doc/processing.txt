@@ -150,7 +150,7 @@ url is https://github.com/sophacles/vim-processing . All contributions and bug
 reports should be done through this site.
 
 People who have contributed to this plugin so far:
-*  Szabolcs Horvát
+*  Szabolcs Horvát (@szhorvat)
 *  Erich Heine (@sophacles)
 *  Guy John (@rumblesan)
 *  Richard Gray (@vortura)
