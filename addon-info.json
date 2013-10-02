@@ -1,0 +1,11 @@
+{
+    "author"       : "Szabolcs Horvát <szhorvat@gmail.com>",
+    "maintainer"   : "Erich Heine <sophacles@gmail.com>",
+    "homepage"     : "https://github.com/sophacles/vim-processing",
+    "name"         : "vim-processing",
+    "repository"   : {
+        "type"     : "git",
+        "url"      : "https://github.com/sophacles/vim-processing.git"
+    },
+    "dependencies" : {"open-browser.vim":{}}
+}
