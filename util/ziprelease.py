@@ -13,6 +13,8 @@ walker = os.walk('.')
 root, dirs, files = walker.next()
 for root, dirs, files in walker:
     for f in files:
+        if f=="tags":
+            continue
         addfile = os.path.join(root, f)
         if not ".git" in addfile:
             zf.write(addfile)
