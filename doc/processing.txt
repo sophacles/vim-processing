@@ -1,4 +1,4 @@
-*processing.txt*     Processing and Vim               Last Change: 2013 Sep 29
+*processing.txt*     Processing and Vim               Last Change: 2013 Nov 15
 
 Authors:  Szabolcs Horvát
           Erich Heine
@@ -108,7 +108,7 @@ On unix systems this can simply be redirected to a file. >
 
 3. Ensure the changes are OK for you - using the compare.py script in the
 utils/ directory, you can see the changes between the two files. >
-    $> python compare.py ../syntax/processing.vim.new ../syntax/processing.vim
+    $> python compare.py ../syntax/processing.vim ../syntax/processing.vim.new
 <If you're happy with the results you can replace the original syntax file
 with the new file >
     $> mv ../syntax/processing.vim.new ../syntax/processing.vim
