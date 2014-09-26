@@ -88,7 +88,7 @@ SYNTAX UPDATE                                              *processing-syntax*
 
 In the case the syntax, keywords and/or functions of the processing language
 change before the script maintainers update it, or if you are using a
-development version of Processing with a newer keywords.txt file, the utils/
+development version of Processing with a newer keywords.txt file, the tools/
 directory has some tools to make this task simple.
 
 These tools use python2, (>=python 2.7).
@@ -98,7 +98,7 @@ The steps are simple:
 1. Get the latest keywords.txt from Processing. This is located in the
 processing installation dir, under Java/modes/keywords.txt
 
-2. cd to the utils/ directory and run the make_syntax script. It takes one
+2. cd to the tools/ directory and run the make_syntax script. It takes one
 argument, the path to the keywords.txt file, and prints the output to stdout.
 On unix systems this can simply be redirected to a file. >
    $> python make_syntax.py /path/to/processing/keywords.txt > \
@@ -107,7 +107,7 @@ On unix systems this can simply be redirected to a file. >
 <Which will output the new syntax in the syntax directory.
 
 3. Ensure the changes are OK for you - using the compare.py script in the
-utils/ directory, you can see the changes between the two files. >
+tools/ directory, you can see the changes between the two files. >
     $> python compare.py ../syntax/processing.vim ../syntax/processing.vim.new
 <If you're happy with the results you can replace the original syntax file
 with the new file >
@@ -115,7 +115,7 @@ with the new file >
 <If not, edit the syntax until it is good. (Please consider creating an issue
 for ways the utility did not satisfy your needs, with how you had to edit it.)
 
-See the code in the utils/ directory for more detail on how these work and
+See the code in the tools/ directory for more detail on how these work and
 additional options for using the utilities.
 
 ==============================================================================
