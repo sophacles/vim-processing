@@ -68,14 +68,16 @@ K                                                             *processing-doc*
 VARIABLES                                               *processing-variables*
 
 g:processing_doc_style                                *g:processing_doc_style*
-         Can be set to 'local' or 'web' . 'web' will point the browser at the
-         online documentation for processing when the K command is used.
-         'local' will point the browser to the documentation directory in
-         |g:processing_doc_path|
+        Can be set to 'local' or 'web' . 'web' will point the browser at the
+        online documentation for processing when the K command is used.
+        'local' will point the browser to the documentation directory in
+        |g:processing_doc_path|
 
 g:processing_doc_path                                  *g:processing_doc_path*
-         The base path for a local installation of the processing
-         documentation.
+        The base path for a local installation of the processing documentation.
+
+g:processing_fold                                          *g:processing_fold*
+        This will set the 'foldmethod' option to "syntax".
 
 g:use_processing_applescript                    *g:use_processing_applescript*
         If this is set to true, processing-vim will use the older version of
