@@ -1,7 +1,7 @@
 import zipfile
 import os
 
-# run from $VIMPROCESSING/utils -- fix later
+# run from $VIMPROCESSING/tools -- fix later
 os.chdir("..")
 fname = "processing.zip"
 
