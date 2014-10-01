@@ -10,10 +10,10 @@ Development version of [vim script #2115](http://www.vim.org/scripts/script.php?
 
 3. Integrates with Vim's compiler support. Sketches can be run directly from Vim using the `:make` command. They are run via the `processing-java` command. This tool is used to run sketches outside of the Processing editor, and is supplied with Processing itself. Make sure `processing-java` is in your `PATH` before trying to run it from vim-processing.
 
-*(MacOSX users will need to install the processing-java command from the Processing IDE before using this functionality)*
+  *(MacOSX users will need to install the processing-java command from the Processing IDE before using this functionality)*
 
-4. Folding can be enabled by defining "processing_fold"
-    let processing_fold = 1
+4. Folding can be enabled by defining "g:processing_fold".
+   `:let g:processing_fold = 1`
 
 For more usage information See `:help processing-intro`.
 

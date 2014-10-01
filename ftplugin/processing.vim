@@ -15,7 +15,7 @@ setlocal expandtab
 setlocal shiftwidth=2
 setlocal tabstop=2
 
-if has("folding") && exists("processing_fold")
+if has("folding") && exists("g:processing_fold")
   setlocal fdm=syntax
 endif
 
