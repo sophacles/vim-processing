@@ -1,2 +1,2 @@
-
-au BufRead,BufNewFile *.pde setf processing
+" Processing
+au BufRead,BufNewFile *.pde		set filetype=processing
