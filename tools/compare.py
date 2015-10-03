@@ -60,7 +60,7 @@ if __name__ == "__main__":
         w2 = get_words(args.syn2, patterns[key])
         removed = w1 - w2
         added = w2 - w1
-        print "# %s" % key
+        print "- %s" % key
         print "Added:"
         print textwrap.fill(' '.join(added), 
                 initial_indent='    ', 
