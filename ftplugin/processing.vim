@@ -83,7 +83,12 @@ if exists("*processing#docopen")
 		endif
 	endfunction "ProcessingDoc
 
-	nnoremap <silent> <buffer> K :call ProcessingDoc()<CR>
+	nnoremap <silent> <buffer> <Plug>(processing-keyword) :<C-u>call ProcessingDoc()<CR>
+	vnoremap <silent> <buffer> <Plug>(processing-keyword) :<C-u>call ProcessingDoc()<CR>
+	if !exists('g:processing_no_default_mappings')
+		silent! nmap <silent> <buffer> K <Plug>(processing-keyword)
+		silent! vmap <silent> <buffer> K <Plug>(processing-keyword)
+	endif
 endif "processing#docopen
 
 
@@ -91,7 +96,7 @@ endif "processing#docopen
 " AppleScript for running sketches on OS X pre Processing 2.0b5
 let s:runner = expand('<sfile>:p:h').'/../bin/runPSketch.scpt'
 
-if ! exists("g:use_processing_applescript")
+if !exists("g:use_processing_applescript")
 	compiler processing
 endif
 
@@ -109,7 +114,10 @@ function! RunProcessing()
 
 endfunction "RunProcessing
 
-map <F5> :call RunProcessing()<CR>
+nnoremap <silent> <buffer> <Plug>(processing-run) :<C-u>call RunProcessing()<CR>
+if !exists('g:processing_no_default_mappings')
+	silent! nmap <silent> <buffer> <F5> <Plug>(processing-run)
+endif
 command! RunProcessing call RunProcessing()
 
 " Restore the saved compatibility options.

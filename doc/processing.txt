@@ -1,4 +1,4 @@
-*processing.txt*     Processing and Vim               Last Change: 2013 Nov 15
+*processing.txt*     Processing and Vim               Last Change: 2015 Dec 06
 
 Authors:  Szabolcs Horvát
           Erich Heine
@@ -12,8 +12,10 @@ License: Distributed under the same terms as Vim itself. (see |license|)
 CONTENTS                                                 *processing-contents*
 
 Introduction                |processing-intro|
-Commands                    |processing-cmd|
-Variables                   |processing-variables|
+Interface                   |processing-interface|
+  Commands                    |processing-cmd|
+  Key mappings                |processing-key-mappings|
+  Variables                   |processing-variables|
 Syntax Update               |processing-syntax|
 Known Issues                |processing-issues|
 Backwards Compatibility     |processing-compatibility|
@@ -48,42 +50,62 @@ the cursor over the target word and pressing K in normal mode. This will open
 a browser pointed to the right place.
 
 ==============================================================================
+INTERFACE                                               *processing-interface*
+
+------------------------------------------------------------------------------
 COMMANDS                                                      *processing-cmd*
 
 :RunProcessing                                                *:RunProcessing*
-<F5>
         Runs the compiler for processing, taking into account the settings
-        defined by the |processing-variables|, This works even with the
+        defined by the |processing-variables|. This works even with the
         settings for backwards compatibility using the applescript hack on OSX
         in conjunction with older processing versions ( < 2.0)
 
-K                                                             *processing-doc*
+------------------------------------------------------------------------------
+KEY MAPPINGS                                        *processing-key-mappings*
+
+<Plug>(processing-keyword)                       *<Plug>(processing-keyword)*
         Opens a browser to the processing documentation for the item under the
         cursor. The location of the documentation can be local or the web
         version, depending on the value of |g:processing_doc_style|. If the
         openbrowser plugin is available, it will use that, otherwise
         processing-vim will attempt to open a browser on it's own.
 
-==============================================================================
+<Plug>(processing-run)                               *<Plug>(processing-run)*
+        Runs the compiler for processing. For more info, see |:RunProcessing|.
+
+                                            *processing_default_key_mappings*
+The following key mappings are available unless
+|g:processing_no_default_mappings| is defined:
+
+{lhs}           {rhs}
+--------        -----------------------------
+K               <Plug>(processing-keyword)
+<F5>            <Plug>(processing-run)
+
+------------------------------------------------------------------------------
 VARIABLES                                               *processing-variables*
 
 g:processing_doc_style                                *g:processing_doc_style*
         Can be set to 'local' or 'web' . 'web' will point the browser at the
         online documentation for processing when the K command is used.
         'local' will point the browser to the documentation directory in
-        |g:processing_doc_path|
+        |g:processing_doc_path|.
 
 g:processing_doc_path                                  *g:processing_doc_path*
         The base path for a local installation of the processing documentation.
 
 g:processing_fold                                          *g:processing_fold*
-        This will set the 'foldmethod' option to "syntax".
+        If this is defined, set the 'foldmethod' option to "syntax".
 
 g:use_processing_applescript                    *g:use_processing_applescript*
-        If this is set to true, processing-vim will use the older version of
+        If this is defined, processing-vim will use the older version of
         compilation and script-running based on an apple script. This is
         recommended only for backwards compatibility, not for versions of
-        processing newer than 2.0.  For more info see |processing-applescript|
+        processing newer than 2.0.  For more info see |processing-applescript|.
+
+g:processing_no_default_mappings            *g:processing_no_default_mappings*
+        If this is defined, don't map the defalt key mappings.
 
 ==============================================================================
 SYNTAX UPDATE                                              *processing-syntax*
@@ -138,7 +160,7 @@ which didn't export the processing-java command line tool. For Mac OSX users
 this script included an AppleScript which could be used to provide limited
 control over the processing runtime from within vim. If you have backwards
 compatible needs, and wish to use this functionality on an OSX machine - you
-can set |g:use_processing_applescript| to true. Then you must run the
+can define |g:use_processing_applescript|. Then you must run the
 Processing app, and set the "use external editor" setting. Once this is done,
 you can use the processing runtime to compile and launch sketches with the
 <F5> key.
