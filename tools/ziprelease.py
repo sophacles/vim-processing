@@ -10,7 +10,7 @@ zf = zipfile.ZipFile(fname, 'w')
 
 #top level - don't include anything but the dirs
 walker = os.walk('.')
-root, dirs, files = walker.next()
+root, dirs, files = next(walker)
 for root, dirs, files in walker:
     for f in files:
         if f=="tags":
