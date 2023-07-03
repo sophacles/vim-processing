@@ -1,4 +1,4 @@
-*processing.txt*     Processing and Vim               Last Change: 2015 Dec 06
+*processing.txt*     Processing and Vim               Last Change: 2023 Jul 01
 
 Authors:  Szabolcs Horvát
           Erich Heine
@@ -115,12 +115,13 @@ change before the script maintainers update it, or if you are using a
 development version of Processing with a newer keywords.txt file, the tools/
 directory has some tools to make this task simple.
 
-These tools use python2, (>=python 2.7).
+These tools use python3, (>=python 3).
 
 The steps are simple:
 
 1. Get the latest keywords.txt from Processing. This is located in the
 processing installation dir, under Java/modes/keywords.txt
+https://github.com/processing/processing4/blob/main/java/keywords.txt
 
 2. cd to the tools/ directory and run the make_syntax script. It takes one
 argument, the path to the keywords.txt file, and prints the output to stdout.

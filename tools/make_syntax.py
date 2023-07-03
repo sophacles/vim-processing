@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import argparse
 import os
@@ -149,5 +149,5 @@ if __name__ == "__main__":
     with open(args.template_file) as f:
         template = SyntaxTemplate(f.read())
 
-    print template.substitute(mapping)
+    print(template.substitute(mapping))
 

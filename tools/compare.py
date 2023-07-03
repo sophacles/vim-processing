@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import argparse
 import os
@@ -60,17 +60,17 @@ if __name__ == "__main__":
         w2 = get_words(args.syn2, patterns[key])
         removed = w1 - w2
         added = w2 - w1
-        print "- %s" % key
-        print "Added:"
-        print textwrap.fill(' '.join(added), 
+        print("- %s" % key)
+        print("Added:")
+        print(textwrap.fill(' '.join(added), 
                 initial_indent='    ', 
-                subsequent_indent='    ')
+                subsequent_indent='    '))
 
-        print "Removed:"
-        print textwrap.fill(' '.join(removed), 
+        print("Removed:")
+        print(textwrap.fill(' '.join(removed), 
                 initial_indent='    ', 
-                subsequent_indent='    ')
-        print
+                subsequent_indent='    '))
+        print()
 
 
 
